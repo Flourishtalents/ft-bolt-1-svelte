@@ -127,9 +127,9 @@
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       {#each features as feature}
-        <button on:click={() => navigate(feature.href)} class="card p-8 text-center group cursor-pointer hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 w-full text-left">
+        <button on:click={() => navigate(feature.href)} class="card p-8 text-center group cursor-pointer w-full text-left">
           <div class="relative mb-6">
-            <div class="w-20 h-20 bg-gradient-to-r {feature.gradient} rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+            <div class="w-20 h-20 bg-gradient-to-r {feature.gradient} rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-xl transition-all duration-500 ease-out group-hover:scale-105">
               <svelte:component this={feature.icon} class="w-8 h-8 text-white" />
             </div>
           </div>

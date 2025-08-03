@@ -114,14 +114,25 @@
     <div>
       <label for="password" class="block text-sm font-semibold text-gray-700 mb-3">Password</label>
       <div class="relative">
-        <input
-          type={showPassword ? 'text' : 'password'}
-          id="password"
-          bind:value={formData.password}
-          class="input-field pr-12"
-          placeholder="Create a password"
-          required
-        />
+        {#if showPassword}
+          <input
+            type="text"
+            id="password"
+            bind:value={formData.password}
+            class="input-field pr-12"
+            placeholder="Create a password"
+            required
+          />
+        {:else}
+          <input
+            type="password"
+            id="password"
+            bind:value={formData.password}
+            class="input-field pr-12"
+            placeholder="Create a password"
+            required
+          />
+        {/if}
         <button
           type="button"
           on:click={() => showPassword = !showPassword}

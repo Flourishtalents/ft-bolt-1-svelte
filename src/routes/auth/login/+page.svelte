@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { authStore } from '$lib/stores/auth';
-  import { goto } from '$app/navigation';
+  import { authStore } from '../../lib/stores/auth';
+  import { navigate } from '../../lib/stores/router';
   import { Eye, EyeOff } from 'lucide-svelte';
   
   let formData = {
@@ -111,9 +111,9 @@
         <input type="checkbox" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500 shadow-sm" />
         <span class="ml-3 text-sm text-gray-600 font-medium">Remember me</span>
       </label>
-      <a href="/auth/forgot-password" class="text-sm text-primary-600 hover:text-primary-700 font-semibold">
+      <button type="button" on:click={() => navigate('/auth/forgot-password')} class="text-sm text-primary-600 hover:text-primary-700 font-semibold">
         Forgot password?
-      </a>
+      </button>
     </div>
 
     <button
@@ -147,7 +147,7 @@
   <div class="mt-8 text-center">
     <p class="text-gray-600">
       Don't have an account?
-      <a href="/auth/register" class="text-primary-600 hover:text-primary-700 font-semibold">Sign up</a>
+      <button type="button" on:click={() => navigate('/auth/register')} class="text-primary-600 hover:text-primary-700 font-semibold">Sign up</button>
     </p>
   </div>
 </div>

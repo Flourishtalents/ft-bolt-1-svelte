@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { authStore } from '$lib/stores/auth';
-  import { goto } from '$app/navigation';
+  import { authStore } from '../../lib/stores/auth';
+  import { navigate } from '../../lib/stores/router';
   import { Eye, EyeOff } from 'lucide-svelte';
   
   let formData = {
@@ -41,11 +41,11 @@
     if (result.success) {
       // Redirect based on user type
       if (formData.type === 'talent') {
-        goto('/talent/portfolio');
+        navigate('/talent/portfolio');
       } else if (formData.type === 'client') {
-        goto('/client/dashboard');
+        navigate('/client/dashboard');
       } else {
-        goto('/agency/dashboard');
+        navigate('/agency/dashboard');
       }
     } else {
       errors = [result.error || 'Registration failed'];

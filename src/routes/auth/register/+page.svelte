@@ -150,14 +150,25 @@
     <div>
       <label for="confirmPassword" class="block text-sm font-semibold text-gray-700 mb-3">Confirm Password</label>
       <div class="relative">
-        <input
-          type={showConfirmPassword ? 'text' : 'password'}
-          id="confirmPassword"
-          bind:value={formData.confirmPassword}
-          class="input-field pr-12"
-          placeholder="Confirm your password"
-          required
-        />
+        {#if showConfirmPassword}
+          <input
+            type="text"
+            id="confirmPassword"
+            bind:value={formData.confirmPassword}
+            class="input-field pr-12"
+            placeholder="Confirm your password"
+            required
+          />
+        {:else}
+          <input
+            type="password"
+            id="confirmPassword"
+            bind:value={formData.confirmPassword}
+            class="input-field pr-12"
+            placeholder="Confirm your password"
+            required
+          />
+        {/if}
         <button
           type="button"
           on:click={() => showConfirmPassword = !showConfirmPassword}

@@ -1,5 +1,5 @@
 <script>
-  import { navigate } from '../stores/router';
+  import { navigate } from '$lib/stores/router';
 </script>
 
 <footer class="bg-gray-900 text-white">

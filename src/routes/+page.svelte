@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { user, isAuthenticated } from '../lib/stores/auth';
-  import { navigate } from '../lib/stores/router';
+  import { user, isAuthenticated } from '$lib/stores/auth';
+  import { navigate } from '$lib/stores/router';
   import { Star, Users, Target, Building, Globe, ArrowRight, Play, Award, Zap } from 'lucide-svelte';
   
   const features = [

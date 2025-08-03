@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { user, isAuthenticated, authStore } from '../stores/auth';
+  import { user, isAuthenticated, authStore } from '$lib/stores/auth';
   import { onMount } from 'svelte';
-  import { page, navigate } from '../stores/router';
+  import { page, navigate } from '$lib/stores/router';
   import { Menu, X, ChevronDown, User, Settings, Bell, LogOut } from 'lucide-svelte';
   
   let showMobileMenu = false;

@@ -129,7 +129,7 @@
   <title>Portfolio - FlourishTalents</title>
 </svelte:head>
 
-<div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8">
+<div class="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 py-8">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Success Message -->

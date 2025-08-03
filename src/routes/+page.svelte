@@ -212,8 +212,8 @@
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="card p-8 hover:shadow-2xl transition-all duration-500 group">
-        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+      <div class="card p-8 group">
+        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-500 ease-out">
           <span class="text-2xl">🎭</span>
         </div>
         <h3 class="text-xl font-bold text-gray-900 mb-4">Entertainment & Performance</h3>
@@ -224,8 +224,8 @@
         </button>
       </div>
       
-      <div class="card p-8 hover:shadow-2xl transition-all duration-500 group">
-        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+      <div class="card p-8 group">
+        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-500 ease-out">
           <span class="text-2xl">📱</span>
         </div>
         <h3 class="text-xl font-bold text-gray-900 mb-4">Digital Marketing</h3>

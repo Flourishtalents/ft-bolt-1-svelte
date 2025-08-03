@@ -181,12 +181,12 @@
     <!-- Talents Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {#each filteredTalents as talent}
-        <div class="card overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300">
+        <div class="card overflow-hidden group cursor-pointer">
           <div class="aspect-square overflow-hidden">
             <img 
               src={talent.image} 
               alt={talent.name}
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             />
           </div>
           

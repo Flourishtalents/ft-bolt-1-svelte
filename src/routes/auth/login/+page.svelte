@@ -23,9 +23,9 @@
     isLoading = true;
     
     const result = await authStore.login(formData.email, formData.password);
-    
+
     if (result.success) {
-      goto('/');
+      navigate('/');
     } else {
       errors = [result.error || 'Login failed'];
     }
@@ -36,9 +36,9 @@
   async function handleAnonymousLogin() {
     isLoading = true;
     const result = await authStore.loginAnonymously();
-    
+
     if (result.success) {
-      goto('/');
+      navigate('/');
     } else {
       errors = [result.error || 'Anonymous login failed'];
     }

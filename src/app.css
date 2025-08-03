@@ -1,31 +1,272 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Pull in Tailwind v4 engine, utilities, and theme resolver */
+@import "tailwindcss";
 
+/* Define your design system tokens using your existing color scheme */
+@theme {
+  /* Spacing */
+  --spacing: 0.25rem;
+  --radius: 0.5rem;
+  
+  /* Your existing color system preserved */
+  --color-border: #E5E7EB;
+  --color-background: #F9FAFB;
+  --color-foreground: #111827;
+  --color-input: #FFFFFF;
+  --color-ring: #4F46E5;
+  
+  /* Card Colors */
+  --color-card: #FFFFFF;
+  --color-card-foreground: #111827;
+  
+  /* Muted Colors */
+  --color-muted: #F3F4F6;
+  --color-muted-foreground: #6B7280;
+  
+  /* Primary Colors - Your existing primary palette */
+  --color-primary: #4F46E5;
+  --color-primary-50: #EEF2FF;
+  --color-primary-100: #E0E7FF;
+  --color-primary-500: #6366F1;
+  --color-primary-600: #4F46E5;
+  --color-primary-700: #4338CA;
+  --color-primary-800: #3730A3;
+  --color-primary-900: #312E81;
+  --color-primary-foreground: #FFFFFF;
+  
+  /* Secondary Colors - Your existing secondary palette */
+  --color-secondary: #059669;
+  --color-secondary-50: #F0FDF4;
+  --color-secondary-100: #DCFCE7;
+  --color-secondary-500: #10B981;
+  --color-secondary-600: #059669;
+  --color-secondary-700: #047857;
+  --color-secondary-800: #065F46;
+  --color-secondary-900: #064E3B;
+  --color-secondary-foreground: #FFFFFF;
+  
+  /* Accent Colors - Your existing accent palette */
+  --color-accent: #D97706;
+  --color-accent-50: #FFFBEB;
+  --color-accent-100: #FEF3C7;
+  --color-accent-500: #F59E0B;
+  --color-accent-600: #D97706;
+  --color-accent-700: #B45309;
+  --color-accent-800: #92400E;
+  --color-accent-900: #78350F;
+  --color-accent-foreground: #1F2937;
+  
+  /* Status Colors */
+  --color-success: #10B981;
+  --color-success-foreground: #FFFFFF;
+  --color-warning: #F59E0B;
+  --color-warning-foreground: #1F2937;
+  --color-error: #EF4444;
+  --color-error-foreground: #FFFFFF;
+  --color-destructive: #EF4444;
+  --color-destructive-foreground: #FFFFFF;
+  
+  /* Typography */
+  --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-family-heading: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  
+  /* Animation */
+  --duration-150: 150ms;
+  --duration-200: 200ms;
+  --duration-250: 250ms;
+  --duration-300: 300ms;
+  --duration-500: 500ms;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Dark mode theme */
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-border: #374151;
+    --color-background: #111827;
+    --color-foreground: #F9FAFB;
+    --color-primary: #6366F1;
+    --color-primary-foreground: #111827;
+    --color-accent: #F59E0B;
+    --color-accent-foreground: #111827;
+    --color-card: #1F2937;
+    --color-card-foreground: #F9FAFB;
+    --color-input: #1F2937;
+    --color-muted: #374151;
+  }
+}
+
+/* Base styles */
 @layer base {
   html {
     scroll-behavior: smooth;
   }
   
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Apply border-border utility */
+  * {
+    @apply border-border;
+  }
+  
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-heading);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  /* Focus styles */
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background;
+  }
+  
+  /* Selection styles */
+  ::selection {
+    @apply bg-accent/20 text-accent-foreground;
   }
 }
 
+/* Component layer - Your existing component styles preserved */
 @layer components {
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-3 px-6 rounded-lg transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
   }
   
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 text-primary-600 font-semibold py-3 px-6 rounded-lg border-2 border-primary-600 transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply bg-background hover:bg-muted text-primary font-semibold py-3 px-6 rounded-lg border-2 border-primary transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
   }
   
   .card {
-    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1;
+    @apply bg-card text-card-foreground rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1;
   }
   
   .input-field {
-    @apply block w-full rounded-lg border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm;
+    @apply block w-full rounded-lg border-border bg-input px-4 py-3 text-foreground shadow-sm ring-1 ring-inset ring-border placeholder:text-muted-foreground focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm;
+  }
+  
+  /* Additional component styles */
+  .btn-cta {
+    @apply bg-accent text-accent-foreground font-bold py-3 px-6 rounded-lg transition-all duration-200 ease-in-out hover:shadow-lg;
+  }
+  
+  .btn-cta:hover {
+    @apply -translate-y-0.5 bg-accent/90;
+  }
+  
+  .card-testimonial {
+    @apply bg-card text-card-foreground p-6 rounded-lg border border-border shadow-md;
+  }
+  
+  .form-field-active {
+    @apply border-2 border-accent ring-2 ring-accent/20;
+  }
+  
+  .section-surface {
+    @apply bg-muted;
+  }
+  
+  .container-padding {
+    @apply px-6 lg:px-8;
+  }
+  
+  .transition-standard {
+    transition: all 250ms ease-in-out;
+  }
+}
+
+/* Utility layer */
+@layer utilities {
+  /* Custom animations */
+  .animate-fade-in {
+    animation: fadeIn var(--duration-500) ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp var(--duration-500) ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn var(--duration-300) ease-out;
+  }
+  
+  /* Gradient utilities using your color scheme */
+  .gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  }
+  
+  .gradient-text-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Backdrop blur utilities */
+  .backdrop-blur-light {
+    backdrop-filter: blur(8px);
+  }
+  
+  .backdrop-blur-heavy {
+    backdrop-filter: blur(20px);
+  }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive design improvements */
+@media (max-width: 640px) {
+  .container-padding {
+    @apply px-4;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

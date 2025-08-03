@@ -1,5 +1,6 @@
 <script lang="ts">
   import { user, isAuthenticated } from '$lib/stores/auth';
+  import { navigate } from '$lib/stores/router';
   import { Star, Users, Target, Building, Globe, ArrowRight, Play, Award, Zap } from 'lucide-svelte';
   
   const features = [
@@ -90,22 +91,22 @@
       </p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
         {#if $isAuthenticated}
-          <a href="/talent/portfolio" class="btn-primary text-xl px-10 py-5 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
+          <button on:click={() => navigate('/talent/portfolio')} class="btn-primary text-xl px-10 py-5 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
             <span>Go to Your Portfolio</span>
             <ArrowRight class="w-5 h-5" />
-          </a>
-          <a href="/client/dashboard" class="btn-secondary text-xl px-10 py-5 bg-white/10 border-white text-white hover:bg-white/20 shadow-2xl backdrop-blur-sm">
+          </button>
+          <button on:click={() => navigate('/client/dashboard')} class="btn-secondary text-xl px-10 py-5 bg-white/10 border-white text-white hover:bg-white/20 shadow-2xl backdrop-blur-sm">
             Client Dashboard
-          </a>
+          </button>
         {:else}
-          <a href="/auth/register" class="btn-primary text-xl px-10 py-5 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
+          <button on:click={() => navigate('/auth/register')} class="btn-primary text-xl px-10 py-5 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
             <span>Get Started Today</span>
             <ArrowRight class="w-5 h-5" />
-          </a>
-          <a href="/talent/discovery" class="btn-secondary text-xl px-10 py-5 bg-white/10 border-white text-white hover:bg-white/20 shadow-2xl backdrop-blur-sm flex items-center space-x-2">
+          </button>
+          <button on:click={() => navigate('/talent/discovery')} class="btn-secondary text-xl px-10 py-5 bg-white/10 border-white text-white hover:bg-white/20 shadow-2xl backdrop-blur-sm flex items-center space-x-2">
             <Play class="w-5 h-5" />
             <span>Discover Talents</span>
-          </a>
+          </button>
         {/if}
       </div>
     </div>
@@ -126,7 +127,7 @@
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       {#each features as feature}
-        <a href={feature.href} class="card p-8 text-center group cursor-pointer hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+        <button on:click={() => navigate(feature.href)} class="card p-8 text-center group cursor-pointer hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 w-full text-left">
           <div class="relative mb-6">
             <div class="w-20 h-20 bg-gradient-to-r {feature.gradient} rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
               <svelte:component this={feature.icon} class="w-8 h-8 text-white" />
@@ -134,7 +135,7 @@
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-primary-600 transition-colors duration-300">{feature.title}</h3>
           <p class="text-gray-600 leading-relaxed">{feature.description}</p>
-        </a>
+        </button>
       {/each}
     </div>
   </div>
@@ -217,10 +218,10 @@
         </div>
         <h3 class="text-xl font-bold text-gray-900 mb-4">Entertainment & Performance</h3>
         <p class="text-gray-600 mb-4">Models, actors, musicians, dancers, and performers ready for your next big project.</p>
-        <a href="/talent/discovery?category=entertainment" class="text-primary-600 hover:text-primary-700 font-semibold flex items-center space-x-1">
+        <button on:click={() => navigate('/talent/discovery')} class="text-primary-600 hover:text-primary-700 font-semibold flex items-center space-x-1">
           <span>Explore Talents</span>
           <ArrowRight class="w-4 h-4" />
-        </a>
+        </button>
       </div>
       
       <div class="card p-8 hover:shadow-2xl transition-all duration-500 group">
@@ -229,10 +230,10 @@
         </div>
         <h3 class="text-xl font-bold text-gray-900 mb-4">Digital Marketing</h3>
         <p class="text-gray-600 mb-4">Influencers, content creators, and digital marketing specialists to amplify your brand.</p>
-        <a href="/talent/discovery?category=digital" class="text-primary-600 hover:text-primary-700 font-semibold flex items-center space-x-1">
+        <button on:click={() => navigate('/talent/discovery')} class="text-primary-600 hover:text-primary-700 font-semibold flex items-center space-x-1">
           <span>Find Experts</span>
           <ArrowRight class="w-4 h-4" />
-        </a>
+        </button>
       </div>
       
       <div class="card p-8 hover:shadow-2xl transition-all duration-500 group">
@@ -241,10 +242,10 @@
         </div>
         <h3 class="text-xl font-bold text-gray-900 mb-4">Creative Media</h3>
         <p class="text-gray-600 mb-4">Photographers, videographers, graphic designers, and creative directors for visual excellence.</p>
-        <a href="/talent/discovery?category=media" class="text-primary-600 hover:text-primary-700 font-semibold flex items-center space-x-1">
+        <button on:click={() => navigate('/talent/discovery')} class="text-primary-600 hover:text-primary-700 font-semibold flex items-center space-x-1">
           <span>View Portfolio</span>
           <ArrowRight class="w-4 h-4" />
-        </a>
+        </button>
       </div>
       
       <div class="card p-8 hover:shadow-2xl transition-all duration-500 group">
@@ -253,10 +254,10 @@
         </div>
         <h3 class="text-xl font-bold text-gray-900 mb-4">Event Management</h3>
         <p class="text-gray-600 mb-4">Event coordinators, ushers, MCs, and entertainment specialists for memorable experiences.</p>
-        <a href="/talent/discovery?category=events" class="text-primary-600 hover:text-primary-700 font-semibold flex items-center space-x-1">
+        <button on:click={() => navigate('/talent/discovery')} class="text-primary-600 hover:text-primary-700 font-semibold flex items-center space-x-1">
           <span>Book Now</span>
           <ArrowRight class="w-4 h-4" />
-        </a>
+        </button>
       </div>
       
       <div class="card p-8 hover:shadow-2xl transition-all duration-500 group">
@@ -265,10 +266,10 @@
         </div>
         <h3 class="text-xl font-bold text-gray-900 mb-4">Agency Partners</h3>
         <p class="text-gray-600 mb-4">Collaborate with top-tier agencies for comprehensive marketing and advertising solutions.</p>
-        <a href="/agency" class="text-primary-600 hover:text-primary-700 font-semibold flex items-center space-x-1">
+        <button on:click={() => navigate('/agency')} class="text-primary-600 hover:text-primary-700 font-semibold flex items-center space-x-1">
           <span>Partner With Us</span>
           <ArrowRight class="w-4 h-4" />
-        </a>
+        </button>
       </div>
       
       <div class="card p-8 hover:shadow-2xl transition-all duration-500 group">
@@ -277,10 +278,10 @@
         </div>
         <h3 class="text-xl font-bold text-gray-900 mb-4">Brand Ambassadors</h3>
         <p class="text-gray-600 mb-4">Professional brand representatives who embody your values and connect with your audience.</p>
-        <a href="/talent/discovery?category=ambassadors" class="text-primary-600 hover:text-primary-700 font-semibold flex items-center space-x-1">
+        <button on:click={() => navigate('/talent/discovery')} class="text-primary-600 hover:text-primary-700 font-semibold flex items-center space-x-1">
           <span>Hire Ambassadors</span>
           <ArrowRight class="w-4 h-4" />
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -298,13 +299,13 @@
       FlourishTalents is your gateway to success.
     </p>
     <div class="flex flex-col sm:flex-row gap-6 justify-center">
-      <a href="/auth/register" class="btn-primary text-xl px-10 py-5 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2">
+      <button on:click={() => navigate('/auth/register')} class="btn-primary text-xl px-10 py-5 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2">
         <span>Join as Talent</span>
         <ArrowRight class="w-5 h-5" />
-      </a>
-      <a href="/client/dashboard" class="btn-secondary text-xl px-10 py-5 border-white text-white hover:bg-white hover:text-gray-900 shadow-2xl">
+      </button>
+      <button on:click={() => navigate('/client/dashboard')} class="btn-secondary text-xl px-10 py-5 border-white text-white hover:bg-white hover:text-gray-900 shadow-2xl">
         Hire Talents
-      </a>
+      </button>
     </div>
   </div>
 </section>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { user, isAuthenticated, authStore } from '$lib/stores/auth';
   import { onMount } from 'svelte';
-  import { page } from '$app/stores';
+  import { page, navigate } from '$lib/stores/router';
   import { Menu, X, ChevronDown, User, Settings, Bell, LogOut } from 'lucide-svelte';
   
   let showMobileMenu = false;
@@ -59,12 +59,12 @@
     <div class="flex justify-between h-20">
       <!-- Logo -->
       <div class="flex items-center">
-        <a href="/" class="flex-shrink-0 flex items-center group">
+        <button on:click={() => navigate('/')} class="flex-shrink-0 flex items-center group">
           <div class="h-12 w-12 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
             <span class="text-white font-bold text-xl">FT</span>
           </div>
           <span class="ml-3 text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">FlourishTalents</span>
-        </a>
+        </button>
       </div>
 
       <!-- Desktop Navigation -->
@@ -76,7 +76,7 @@
               on:click|stopPropagation={() => {
                 if (item.name === 'Talent') showTalentDropdown = !showTalentDropdown;
                 else if (item.name === 'Community') showCommunityDropdown = !showCommunityDropdown;
-                else window.location.href = item.href;
+                else navigate(item.href);
               }}
             >
               <span>{item.name}</span>
@@ -89,12 +89,12 @@
               <div class="absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 opacity-100 visible transition-all duration-200 z-50">
                 <div class="py-3">
                   {#each item.dropdown as subItem}
-                    <a
-                      href={subItem.href}
-                      class="block px-6 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition duration-200 font-medium"
+                    <button
+                      on:click={() => { navigate(subItem.href); showTalentDropdown = false; showCommunityDropdown = false; }}
+                      class="block w-full text-left px-6 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition duration-200 font-medium"
                     >
                       {subItem.name}
-                    </a>
+                    </button>
                   {/each}
                 </div>
               </div>
@@ -128,18 +128,18 @@
                     <p class="text-sm font-semibold text-gray-900">{$user.name}</p>
                     <p class="text-xs text-gray-500">{$user.email}</p>
                   </div>
-                  <a href="/profile" class="flex items-center px-6 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition duration-200">
+                  <button on:click={() => { navigate('/profile'); showUserMenu = false; }} class="flex items-center w-full text-left px-6 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition duration-200">
                     <User class="w-4 h-4 mr-3" />
                     Profile
-                  </a>
-                  <a href="/settings" class="flex items-center px-6 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition duration-200">
+                  </button>
+                  <button on:click={() => { navigate('/settings'); showUserMenu = false; }} class="flex items-center w-full text-left px-6 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition duration-200">
                     <Settings class="w-4 h-4 mr-3" />
                     Settings
-                  </a>
-                  <a href="/notifications" class="flex items-center px-6 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition duration-200">
+                  </button>
+                  <button on:click={() => { navigate('/notifications'); showUserMenu = false; }} class="flex items-center w-full text-left px-6 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition duration-200">
                     <Bell class="w-4 h-4 mr-3" />
                     Notifications
-                  </a>
+                  </button>
                   <div class="border-t border-gray-100 mt-2 pt-2">
                     <button 
                       on:click={handleLogout}
@@ -154,8 +154,8 @@
             {/if}
           </div>
         {:else}
-          <a href="/auth/login" class="text-gray-700 hover:text-primary-600 font-semibold transition duration-300 px-4 py-2 rounded-lg hover:bg-primary-50">Sign In</a>
-          <a href="/auth/register" class="btn-primary shadow-lg hover:shadow-xl">Get Started</a>
+          <button on:click={() => navigate('/auth/login')} class="text-gray-700 hover:text-primary-600 font-semibold transition duration-300 px-4 py-2 rounded-lg hover:bg-primary-50">Sign In</button>
+          <button on:click={() => navigate('/auth/register')} class="btn-primary shadow-lg hover:shadow-xl">Get Started</button>
         {/if}
       </div>
 
@@ -180,23 +180,21 @@
         <div class="px-4 pt-4 pb-6 space-y-2">
           {#each navigation as item}
             <div>
-              <a
-                href={item.href}
-                class="block px-4 py-3 text-base font-semibold text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition duration-300"
-                on:click={() => showMobileMenu = false}
+              <button
+                on:click={() => { navigate(item.href); showMobileMenu = false; }}
+                class="block w-full text-left px-4 py-3 text-base font-semibold text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition duration-300"
               >
                 {item.name}
-              </a>
+              </button>
               {#if item.dropdown}
                 <div class="ml-4 mt-2 space-y-1">
                   {#each item.dropdown as subItem}
-                    <a
-                      href={subItem.href}
-                      class="block px-4 py-2 text-sm text-gray-600 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition duration-200"
-                      on:click={() => showMobileMenu = false}
+                    <button
+                      on:click={() => { navigate(subItem.href); showMobileMenu = false; }}
+                      class="block w-full text-left px-4 py-2 text-sm text-gray-600 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition duration-200"
                     >
                       {subItem.name}
-                    </a>
+                    </button>
                   {/each}
                 </div>
               {/if}
@@ -216,8 +214,8 @@
               </div>
             </div>
             <div class="space-y-1 px-4">
-              <a href="/profile" class="block px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-white rounded-lg transition duration-200">Profile</a>
-              <a href="/settings" class="block px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-white rounded-lg transition duration-200">Settings</a>
+              <button on:click={() => { navigate('/profile'); showMobileMenu = false; }} class="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-white rounded-lg transition duration-200">Profile</button>
+              <button on:click={() => { navigate('/settings'); showMobileMenu = false; }} class="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-white rounded-lg transition duration-200">Settings</button>
               <button 
                 on:click={handleLogout}
                 class="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 hover:text-red-600 hover:bg-white rounded-lg transition duration-200"
@@ -227,8 +225,8 @@
             </div>
           {:else}
             <div class="space-y-2 px-4">
-              <a href="/auth/login" class="block px-4 py-3 text-base font-semibold text-gray-700 hover:text-primary-600 hover:bg-white rounded-lg transition duration-200">Sign In</a>
-              <a href="/auth/register" class="block px-4 py-3 text-base font-semibold bg-primary-600 text-white hover:bg-primary-700 rounded-lg transition duration-200 text-center">Get Started</a>
+              <button on:click={() => { navigate('/auth/login'); showMobileMenu = false; }} class="block w-full text-left px-4 py-3 text-base font-semibold text-gray-700 hover:text-primary-600 hover:bg-white rounded-lg transition duration-200">Sign In</button>
+              <button on:click={() => { navigate('/auth/register'); showMobileMenu = false; }} class="block w-full px-4 py-3 text-base font-semibold bg-primary-600 text-white hover:bg-primary-700 rounded-lg transition duration-200 text-center">Get Started</button>
             </div>
           {/if}
         </div>

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { authStore } from '$lib/stores/auth';
-  import { goto } from '$app/navigation';
+  import { navigate } from '$lib/stores/router';
   import { Eye, EyeOff } from 'lucide-svelte';
   
   let formData = {
@@ -41,11 +41,11 @@
     if (result.success) {
       // Redirect based on user type
       if (formData.type === 'talent') {
-        goto('/talent/portfolio');
+        navigate('/talent/portfolio');
       } else if (formData.type === 'client') {
-        goto('/client/dashboard');
+        navigate('/client/dashboard');
       } else {
-        goto('/agency/dashboard');
+        navigate('/agency/dashboard');
       }
     } else {
       errors = [result.error || 'Registration failed'];
@@ -114,14 +114,25 @@
     <div>
       <label for="password" class="block text-sm font-semibold text-gray-700 mb-3">Password</label>
       <div class="relative">
-        <input
-          type={showPassword ? 'text' : 'password'}
-          id="password"
-          bind:value={formData.password}
-          class="input-field pr-12"
-          placeholder="Create a password"
-          required
-        />
+        {#if showPassword}
+          <input
+            type="text"
+            id="password"
+            bind:value={formData.password}
+            class="input-field pr-12"
+            placeholder="Create a password"
+            required
+          />
+        {:else}
+          <input
+            type="password"
+            id="password"
+            bind:value={formData.password}
+            class="input-field pr-12"
+            placeholder="Create a password"
+            required
+          />
+        {/if}
         <button
           type="button"
           on:click={() => showPassword = !showPassword}
@@ -139,14 +150,25 @@
     <div>
       <label for="confirmPassword" class="block text-sm font-semibold text-gray-700 mb-3">Confirm Password</label>
       <div class="relative">
-        <input
-          type={showConfirmPassword ? 'text' : 'password'}
-          id="confirmPassword"
-          bind:value={formData.confirmPassword}
-          class="input-field pr-12"
-          placeholder="Confirm your password"
-          required
-        />
+        {#if showConfirmPassword}
+          <input
+            type="text"
+            id="confirmPassword"
+            bind:value={formData.confirmPassword}
+            class="input-field pr-12"
+            placeholder="Confirm your password"
+            required
+          />
+        {:else}
+          <input
+            type="password"
+            id="confirmPassword"
+            bind:value={formData.confirmPassword}
+            class="input-field pr-12"
+            placeholder="Confirm your password"
+            required
+          />
+        {/if}
         <button
           type="button"
           on:click={() => showConfirmPassword = !showConfirmPassword}
@@ -173,7 +195,7 @@
   <div class="mt-8 text-center">
     <p class="text-gray-600">
       Already have an account?
-      <a href="/auth/login" class="text-primary-600 hover:text-primary-700 font-semibold">Sign in</a>
+      <button type="button" on:click={() => navigate('/auth/login')} class="text-primary-600 hover:text-primary-700 font-semibold">Sign in</button>
     </p>
   </div>
 </div>

@@ -157,7 +157,7 @@
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
       {#each stats as stat}
         <div class="text-center group">
-          <div class="flex justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+          <div class="flex justify-center mb-4 group-hover:scale-105 transition-transform duration-500 ease-out">
             <svelte:component this={stat.icon} class="w-12 h-12 text-white" />
           </div>
           <div class="text-5xl md:text-6xl font-bold text-white mb-3 group-hover:text-accent-200 transition-colors duration-300">{stat.value}</div>
@@ -236,8 +236,8 @@
         </button>
       </div>
       
-      <div class="card p-8 hover:shadow-2xl transition-all duration-500 group">
-        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+      <div class="card p-8 group">
+        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-500 ease-out">
           <span class="text-2xl">🎨</span>
         </div>
         <h3 class="text-xl font-bold text-gray-900 mb-4">Creative Media</h3>
@@ -248,8 +248,8 @@
         </button>
       </div>
       
-      <div class="card p-8 hover:shadow-2xl transition-all duration-500 group">
-        <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+      <div class="card p-8 group">
+        <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-500 ease-out">
           <span class="text-2xl">🎪</span>
         </div>
         <h3 class="text-xl font-bold text-gray-900 mb-4">Event Management</h3>
@@ -260,8 +260,8 @@
         </button>
       </div>
       
-      <div class="card p-8 hover:shadow-2xl transition-all duration-500 group">
-        <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+      <div class="card p-8 group">
+        <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-500 ease-out">
           <span class="text-2xl">🏢</span>
         </div>
         <h3 class="text-xl font-bold text-gray-900 mb-4">Agency Partners</h3>
@@ -272,8 +272,8 @@
         </button>
       </div>
       
-      <div class="card p-8 hover:shadow-2xl transition-all duration-500 group">
-        <div class="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+      <div class="card p-8 group">
+        <div class="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-500 ease-out">
           <span class="text-2xl">🎯</span>
         </div>
         <h3 class="text-xl font-bold text-gray-900 mb-4">Brand Ambassadors</h3>

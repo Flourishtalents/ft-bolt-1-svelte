@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { authStore } from '../../lib/stores/auth';
-  import { navigate } from '../../lib/stores/router';
+  import { authStore } from '$lib/stores/auth';
+  import { navigate } from '$lib/stores/router';
   import { Eye, EyeOff } from 'lucide-svelte';
   
   let formData = {

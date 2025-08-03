@@ -173,7 +173,7 @@
   <div class="mt-8 text-center">
     <p class="text-gray-600">
       Already have an account?
-      <a href="/auth/login" class="text-primary-600 hover:text-primary-700 font-semibold">Sign in</a>
+      <button type="button" on:click={() => navigate('/auth/login')} class="text-primary-600 hover:text-primary-700 font-semibold">Sign in</button>
     </p>
   </div>
 </div>

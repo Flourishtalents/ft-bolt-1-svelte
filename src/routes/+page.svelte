@@ -182,7 +182,7 @@
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {#each testimonials as testimonial}
-        <div class="card p-8 text-center hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+        <div class="card p-8 text-center">
           <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-6 shadow-lg">
             <img src={testimonial.image} alt={testimonial.name} class="w-full h-full object-cover" />
           </div>
